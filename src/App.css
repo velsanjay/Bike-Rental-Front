@@ -1,38 +1,268 @@
 .App {
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+html{
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  background-image: linear-gradient(43deg,#190424,#fccefc 46%,#0e0e0d);
+
+}
+.nav{
+  display:flex;
+  justify-content: space-around;
   align-items: center;
+  flex-wrap: wrap;
+  background-color: rgb(86, 54, 54);
+  color: #fff;
+  position: fixed;
+  top: 0;
+  gap:1rem;
+  width: 100vw;
+}
+.cur{
+  cursor: pointer;
+}
+.new{
+  margin: auto;
+  display: grid;
+  margin-top: 50px;
+  width: 400px;
+  grid-template-columns: auto;
+  padding: 20px;
+  gap: 1rem;
+  border-radius: 20px;
+  background-color: #fff;
+}
+.new:hover{
+  transform: translateY(-5px);
+  box-shadow: 4px 4px 4px #f9ebeb;
+}
+.but{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.3rem;
+}
+.home{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap:1.5rem;
+}
+.home1{
+  display: flex;
+  flex-wrap: wrap;
+  width: 350px;
+  align-items: center;
+  margin: 20px;
+  gap: 0.5rem;
+  /* position: inherit; */
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  border: 1px solid black;
+  border-radius: 10px;
+  background: #fff;
+  padding-bottom: 10px;
+}
+.home img{
+  width: 100%;
+  /* height: 250px; */
+}
+.data{
+  display: flex;
+  justify-content: space-around;
+  gap: 1rem;
+  width: 100%;
+  align-items: center;
+}
+.card{
+  display: grid;
+  grid-template-columns: 50% auto;
+  width: 800px;
+  margin: auto;
+  margin-bottom: 20px;
+  margin-top: 100px;
+  border: 1px solid lightblue;
+  border-radius: 20px;
+  align-items: center;
+  background-color: #fff;
+  box-shadow: 4px 4px 4px lightpink;
 }
 
-.App-link {
-  color: #61dafb;
+.card1{
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  text-align: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding-bottom: 20px;
+}
+.load1{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 100vh;
+}
+.cardtop{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.card1 img{
+  width: 100%;
+}
+.card2{
+  margin: 10px;
+  border: 1px solid black;
+  border-radius: 20px;
+  margin-top: -30px;
+}
+.card3{
+  display: grid;
+  grid-template-columns: auto auto auto;
+  margin: -10px;
+}
+.wid{
+  width: 190%;
+  padding: 10px;
+}
+.cards{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cards1{
+  display: grid;
+  grid-template-columns: 50% auto;
+  gap:1rem;
+  padding: 15px;
+}
+.card4{
+  display: grid;
+  grid-template-columns: auto auto auto;
+  /* border: 1px solid lavender; */
+}
+.ind{
+  border: 1px solid lavender;
+  border-radius: 20px;
+  margin: 5px;
+}
+.form{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: auto;
+  width: 480px;
+  gap: 2rem;
+  border: 1px solid slategrey;
+  padding: 20px;
+  border-radius: 20px;
+  /* margin-top: 80px; */
+  background-color: #fff;
+}
+.sigin{
+  margin: auto;
+  margin-top: 50px;
+  width: 500px;
+  border: 1px solid black;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+}
+.sigin p{
+  cursor: pointer;
+}
+.sigin:hover{
+  transform: translateY(-10px);
+  box-shadow: 3px 4px 3px black;
+}
+.items{
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: auto auto;
+}
+.flex{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  margin-top: 30px
+}
+.css-sghohy-MuiButtonBase-root-MuiButton-root{
+  position:unset;
+}
+.but p{
+  cursor: pointer;
+}
+.confirm{
+  border: 1px solid lightblue;
+  border-radius: 20px;
+  width: 600px;
+  gap: 1rem;
+  margin: auto;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin-top: 50px;
+  padding: 20px;
+  background-color: #fff;
+}
+.confirm p{
+  text-align: start;
+}
+.confirm:hover{
+  transform: translateY(-10px);
+}
+.img{
+  /* mix-blend-mode: color-burn; */
+  width: 100%;
+  border-radius: 20px;
+}
+.bord{
+  border: 1px solid lightblue;
+  border-radius: 20px;
+  margin: 10px;
+  padding: 10px;
+  /* width: 350px; */
+  height: max-content;
+}
+.load{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media(max-width:800px){
+  .items{
+    grid-template-columns: auto;
   }
-  to {
-    transform: rotate(360deg);
+  .sigin{
+    width: 270px;
+  }
+  .new{
+    width: 270px;
+  }
+  .confirm{
+    width: 350px;
+  }
+  .card{
+    grid-template-columns: auto;
+    width: 350px;
+  }
+  .card4{
+    grid-template-columns: auto;
+  }
+  .card2{
+    margin-top: 0;
+  }
+  .wid{
+    width: auto;
   }
 }
