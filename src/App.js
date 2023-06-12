@@ -14,7 +14,7 @@ import BookDetail from './Routs/BookDetail';
 import LogOut from './Routs/LogOut';
 import { ToastContainer } from 'react-toastify';
 
-export const url = 'http://localhost:7000'
+export const url = 'https://bike-rental-lant.onrender.com'
 
 function App() {
   return (
