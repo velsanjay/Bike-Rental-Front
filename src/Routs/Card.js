@@ -93,8 +93,8 @@ function Card() {
         <h4>Type</h4>
         <p>{data.mileage}</p>
         <p>{data.seats}</p>
-        <p>{data.bikeType}</p>
        </div>
+        <p>{data.bikeType}</p>
        </div>
      <div className='card2 wid'>
         <h2>Insurance</h2>
