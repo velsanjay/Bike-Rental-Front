@@ -148,6 +148,9 @@ function BookDetail() {
                
                 </div>
                 </div>
+                <Button
+                onClick={()=>navigate(`/dashboard/${id}`)}
+                >Go Back</Button>
               <Button variant='contained' 
               onClick={()=>ReturnBike()}
               color='error'>Return Bike</Button>

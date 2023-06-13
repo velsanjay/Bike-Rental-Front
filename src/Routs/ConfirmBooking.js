@@ -56,9 +56,11 @@ function ConfirmBooking() {
             if(start.length==1){
                 date = `0${start}:${ex2[1]} pm ${mon[Number(ex1[1])]} ${ex1[2]} ${ex1[0]}`
             }else{
-                date = `0${start}:${ex2[1]} pm ${mon[Number(ex1[1])]} ${ex1[2]} ${ex1[0]}`
+                date= `${start}:${ex2[1]} pm ${mon[Number(ex1[1])]} ${ex1[2]} ${ex1[0]}`
             }
            
+        }else if(ex2[0]==0){
+            date = `12:${ex2[1]} am ${mon[Number(ex1[1])]} ${ex1[2]} ${ex1[0]}`
         }else{
             date = `${data.startTime} am ${mon[Number(ex1[1])]} ${ex1[2]} ${ex1[0]}`
         }
@@ -66,10 +68,12 @@ function ConfirmBooking() {
         if(ex4[0]>12){
             let start = (ex4[0]-12).toString() 
             if(start.length==1){
-                date = `0${start}:${ex2[1]} pm ${mon[Number(ex1[1])]} ${ex1[2]} ${ex1[0]}`
+                date1 = `0${start}:${ex4[1]} pm ${mon[Number(ex3[1])]} ${ex3[2]} ${ex3[0]}`
             }else{
-                date = `0${start}:${ex2[1]} pm ${mon[Number(ex1[1])]} ${ex1[2]} ${ex1[0]}`
+                date1 = `${start}:${ex4[1]} pm ${mon[Number(ex3[1])]} ${ex3[2]} ${ex3[0]}`
             }
+        }else if(ex4[0]==0){
+            date1 = `12:${ex4[1]} am ${mon[Number(ex3[1])]} ${ex3[2]} ${ex3[0]}`
         }else{
             date1 = `${data.endTime} am ${mon[Number(ex3[1])]} ${ex3[2]} ${ex3[0]}`
         }

@@ -244,28 +244,35 @@ html{
     grid-template-columns: auto;
   }
   .sigin{
-    width: 270px;
+    width: 300px;
   }
   .new{
-    width: 270px;
+    width: 300px;
   }
   .confirm{
-    width: 270px;
+    width: 280px;
   }
   .card{
     grid-template-columns: auto;
-    width: 270px;
+    width: 320px;
   }
   .card4{
     grid-template-columns: auto;
+    width: 280px;
   }
   .card2{
     margin-top: 0;
+    width: 280px;
+    padding: 10px;
+    align-items: center;
+  }
+  .wid{
+    width: 280px;
+  }
+  .ind{
+    padding: 10px;
   }
   .form{
     width: 270px;
-  }
-  .wid{
-    width: auto;
   }
 }
