@@ -3,6 +3,8 @@ import axios from 'axios';
 import React, { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { url } from '../App';
+import { ClimbingBoxLoader } from 'react-spinners';
+import { toast } from 'react-toastify';
 
 function NewBike() {
     const navigate = useNavigate();
@@ -14,14 +16,16 @@ function NewBike() {
     const [seats, setSeats] = useState(null)
     const [bikeType, setBikeType] = useState(null)
     const [amount, setAmount] = useState(null);
+    const [loading, setLoading] = useState(false)
     let {id} = useParams()
 
     const NewBike = async (e) => {
         e.preventDefault()
+        setLoading(true)
         try {
             let payload = {model, year, manufacture, mileage, img, seats, bikeType, amount}
             const res = await axios.post(`${url}/bike/new`,payload)
-            console.log(res.data);
+            toast.success(res.data.message);
             let inp = document.querySelectorAll('input')
             for(let i of inp){
                 i.value=''
@@ -32,8 +36,20 @@ function NewBike() {
         } catch (error) {
             console.log(error)
         }
+        setLoading(false)
     }
-    return (
+    return <>
+    {loading ?(
+        <div className='load'>
+        <ClimbingBoxLoader
+        color={'darkblue'}
+        loading={loading}
+        size={50}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
+        </div>
+    ):(
         <form onSubmit={(e)=>NewBike(e)}>
         <div className='new'>
             <h1>New Bike Detail</h1>
@@ -46,11 +62,9 @@ function NewBike() {
             />
             <TextField
                 onChange={(e)=>setManufacture(e.target.value)}
-                // InputProps={{ inputProps: { min: "2023-05-15" } }}
                 label="Manufacture"
                 helperText='Ex: Yamaha'
                 required
-            // defaultValue='2023-05-3'
             />
             <TextField
                 onChange={(e)=>setYear(e.target.value)}
@@ -120,7 +134,8 @@ function NewBike() {
 
         </div>
         </form>
-    )
+        )}
+        </>
 }
 
 export default NewBike

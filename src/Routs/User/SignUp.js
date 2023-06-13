@@ -4,8 +4,6 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-// import {  toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import { url } from '../../App';
 import { EmailSendValue } from '../data';
@@ -103,7 +101,7 @@ function SignUp() {
               required
               onChange={(e) => setEmail(e.target.value)}
               id="input-with-icon-adornment"
-              label="email"
+              label="Please Enter Valid Email"
               className='email'
               startAdornment={
                 <InputAdornment position="start">

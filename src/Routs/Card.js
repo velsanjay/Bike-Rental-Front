@@ -14,7 +14,8 @@ import { DotLoader } from 'react-spinners'
 
 function Card() {
     const navigate = useNavigate();
-    const [value, setValue] = useState(0);
+    const [user, setUser] = useState(null)
+    const [value , setValue] = useState(0)
     const {id} = useParams();
     const {userid} = useParams()
     const [data , setData] = useState({})
@@ -26,6 +27,8 @@ function Card() {
                 let res = await axios.get(url)
                 let fetchData = res.data.data.find((e)=>e._id==userid)
                 setData(fetchData)
+                let res1 = await axios.get(`${url}/get/${id}`)
+                setUser(res1.data.data)
             } catch (error) {
              console.log(error)   
             }
@@ -178,7 +181,13 @@ function Card() {
                 </div>
                 </RadioGroup>
                 <hr/>
-                {data.available==true ?(
+                {user && user.book !=null ?(
+                    <Button
+                    variant="contained"
+                    color="secondary"
+                    disabled
+                    >Plese Return Your Bike</Button>
+                ):data.available==true ?(
                     <Button
                     variant="contained"
                     color="secondary"

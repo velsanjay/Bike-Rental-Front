@@ -99,6 +99,16 @@ function ConfirmBooking() {
         }
         setLoading(false)
     }
+    const CancelBook = async ()=>{
+        try {
+            let payload = {id:data._id}
+            let res = await axios.post(`${url}/book/remove`, payload)
+            console.log(res.data)
+            navigate(`/dashboard/${id}`)        
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
 
   return <>
@@ -170,7 +180,9 @@ function ConfirmBooking() {
            
             </div>
             </div>
-            <Button variant='contained' color='error'>Cancel Booking</Button>
+            <Button variant='contained' 
+            onClick={()=>CancelBook()}
+            color='error'>Cancel Booking</Button>
           {show ?(
           <Button disabled variant='contained'>Confirm And Book</Button>   
           ):(

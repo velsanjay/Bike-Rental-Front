@@ -250,17 +250,20 @@ html{
     width: 270px;
   }
   .confirm{
-    width: 350px;
+    width: 270px;
   }
   .card{
     grid-template-columns: auto;
-    width: 350px;
+    width: 270px;
   }
   .card4{
     grid-template-columns: auto;
   }
   .card2{
     margin-top: 0;
+  }
+  .form{
+    width: 270px;
   }
   .wid{
     width: auto;

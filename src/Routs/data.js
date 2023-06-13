@@ -1,5 +1,6 @@
 // import { AppState } from "../contaxt/AppProvider"
 import emailjs from '@emailjs/browser';
+import { toast } from 'react-toastify';
 
 export const Data =[
     {
@@ -57,8 +58,8 @@ export const EmailSendValue = async(data) =>{
     let params = {
         to_name: data.name,
         message: data.value,
-        from_name: data.email
+        from_email: data.email
       }
-      emailjs.send("service_a3t2n7t", "template_wh20mdn", params, 'XvuttI8guIGVDozXe').then()
-      console.log("it's worked Successfully")
+      emailjs.send("service_a3t2n7t", "template_jlc4tr6", params, 'XvuttI8guIGVDozXe').then()
+      toast.success("Your OTP is Sent in Email Successfully!!!")
     }
