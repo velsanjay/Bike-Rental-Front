@@ -5,11 +5,13 @@ import React, { useState } from 'react'
 import { url } from '../../App'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { ScaleLoader } from 'react-spinners'
 
 function SignIn() {
   const [email, setEmail] = useState(null)
   const [password, setPassword] = useState(null)
   const [showPassword, setShowPassword] = useState(false);
+  const [loading , setLoading] = useState(false)
   let navigate = useNavigate();
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -18,23 +20,32 @@ function SignIn() {
     };
 
     const FetchData= async(e) => {
-        
         e.preventDefault();
-
+        setLoading(true)
         try {
             let payload={email, password}
             let res=await axios.post(`${url}/signin`,payload)
-            console.log(res.data)
             toast.success(res.data.message)
              sessionStorage.setItem('token',res.data.token)
             navigate(`/dashboard/${res.data.data._id}`)
         } catch (error) {
             toast.error(error.response.data.message)
-            
         }
+        setLoading(false)
     }
 
-    return (
+    return <>
+    {loading ?(
+            <div className='load'>
+            <ScaleLoader
+            color={'darkblue'}
+            loading={loading}
+            size={150}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+          />
+            </div>
+            ):(
     <div>
         <form className='new'  onSubmit={FetchData}>
             <h1>Sign In</h1>
@@ -91,7 +102,8 @@ function SignIn() {
             </div>
         </form>
     </div>
-  )
+    )}    
+    </>
 }
 
 export default SignIn

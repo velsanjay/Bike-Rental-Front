@@ -6,16 +6,19 @@ import { url } from '../../App'
 import { useNavigate } from 'react-router-dom'
 import { EmailSendValue } from '../data'
 import { toast } from 'react-toastify'
+import { ScaleLoader } from 'react-spinners'
 
 function ForgetEmail() {
     const [email, setEmail] = useState(null)
     const [password, setPassword] = useState(null)
     const [confirmPassword, setConfirmPsssword] = useState(null)
     const [showPassword, setShowPassword] = useState(false);
+    const [loading, setLoading] = useState(false)
     let navigate =useNavigate()
 
     const FormSubmit = async(e) =>{
         e.preventDefault()
+        setLoading(true)
         try {
             let payload={email, password, confirmPassword}
             let res = await axios.patch(`${url}/forget`,payload)
@@ -28,14 +31,25 @@ function ForgetEmail() {
         } catch (error) {
             toast.error(error.response.data.message)
         }
-        
+        setLoading(false)
     } 
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
     const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
     };
-    return (
+    return <>
+    {loading ?(
+        <div className='load'>
+        <ScaleLoader
+        color={'darkblue'}
+        loading={loading}
+        size={150}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
+        </div>
+        ):(
         <div>
             <form className='new' onSubmit={(e)=>FormSubmit(e)}>
                 <h1>Forget Password</h1>
@@ -116,7 +130,8 @@ function ForgetEmail() {
 
             </form>
         </div>
-    )
+        )}
+    </>
 }
 
 export default ForgetEmail

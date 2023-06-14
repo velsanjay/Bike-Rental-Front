@@ -5,14 +5,17 @@ import React,{useState} from 'react'
 import { url } from '../../App'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { ScaleLoader } from 'react-spinners'
 
 function ValidateEmail() {
   const[email, setEmail]= useState(null)
   const [value,setValue]= useState(null)
+  const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
 
   const Validate = async (e)=>{
     e.preventDefault()
+    setLoading(true)
     try {
       const payload={email,value}
       console.log(payload)
@@ -24,8 +27,21 @@ function ValidateEmail() {
       toast.error(error.response.data.message)
       console.log(error)
   }
+  setLoading(false)
 }
-  return (
+  return <>
+  {loading ?(
+     <div className='load'>
+     <ScaleLoader
+     color={'darkblue'}
+     loading={loading}
+     size={150}
+     aria-label="Loading Spinner"
+     data-testid="loader"
+   />
+     </div>
+  ):(
+  
     <div>
       <form className='new' onSubmit={(e)=>Validate(e)}>
         <h1>Validate User</h1>
@@ -65,7 +81,9 @@ function ValidateEmail() {
           </div>
 </form>
     </div>
-  )
+    )}
+    </>
+
 }
 
 export default ValidateEmail

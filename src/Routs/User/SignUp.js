@@ -8,6 +8,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import { url } from '../../App';
 import { EmailSendValue } from '../data';
 import { toast } from 'react-toastify';
+import { ScaleLoader } from 'react-spinners';
 
 
 
@@ -22,11 +23,12 @@ function SignUp() {
   const [email, setEmail] = useState(null);
   const [confirmPassword, setConfirmPsssword] = useState(null);
   const [phoneNo, setPhoneNo] = useState(null)
+  const [loading, setLoading] = useState(false)
   let curDate;
 
   const handleUser = async (e) => {
     e.preventDefault();
-
+    setLoading(true)
     let payload = { name, email, password, confirmPassword, phoneNo, role, licenceNo, expDate }
     try {
       let res = await axios.post(`${url}/signup`, payload)
@@ -42,7 +44,7 @@ function SignUp() {
         toast.error(error.response.data.message)
       console.log(error)
     }
-
+    setLoading(false)
   }
 
 
@@ -65,13 +67,22 @@ function SignUp() {
     event.preventDefault();
   };
 
-  return (
+  return <>
+  {loading ? (
+    <div className='load'>
+    <ScaleLoader
+    color={'darkblue'}
+    loading={loading}
+    size={150}
+    aria-label="Loading Spinner"
+    data-testid="loader"
+  />
+    </div>
+    ):(
     <div className='sigin'>
       <h1> Sign Up </h1>
       <form onSubmit={handleUser}>
         <div className='items'>
-          {/* <div className='but'> */}
-
 
           <TextField
             id="outlined-basic"
@@ -95,7 +106,7 @@ function SignUp() {
           <FormControl variant="standard">
             <InputLabel
               htmlFor="input-with-icon-adornment">
-              email
+              Please Enter Valid Email
             </InputLabel>
             <Input
               required
@@ -138,7 +149,6 @@ function SignUp() {
             />
           </FormControl>
 
-
           <FormControl variant="standard">
             <InputLabel htmlFor="standard-adornment-password">Confirm Password</InputLabel>
             <Input
@@ -159,7 +169,8 @@ function SignUp() {
                 </InputAdornment>
               }
             />
-</FormControl>
+          </FormControl>
+          
             <TextField
               id="outlined-basic"
               onChange={(e) => setLicenceNo(e.target.value)}
@@ -172,8 +183,6 @@ function SignUp() {
               onChange={(e) => setExpDate(e.target.value)}
               defaultValue={curDate}
               required label="Exp Date" variant="standard" />
-          
-
         </div>
 
         <div className='flex'>
@@ -192,7 +201,8 @@ function SignUp() {
         </div>
       </form>
     </div>
-  )
+    )}
+    </>
 } 
 
 export default SignUp
