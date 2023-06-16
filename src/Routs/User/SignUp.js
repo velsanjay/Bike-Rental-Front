@@ -66,7 +66,6 @@ function SignUp() {
   const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
   };
-
   return <>
   {loading ? (
     <div className='load'>
@@ -110,6 +109,7 @@ function SignUp() {
             </InputLabel>
             <Input
               required
+              type='email'
               onChange={(e) => setEmail(e.target.value)}
               id="input-with-icon-adornment"
               label="Please Enter Valid Email"
@@ -120,8 +120,8 @@ function SignUp() {
                 </InputAdornment>
               }
             />
-
           </FormControl>
+
           <TextField
             id="outlined-basic"
             onChange={(e) => setPhoneNo(e.target.value)}
@@ -181,11 +181,13 @@ function SignUp() {
               type="date"
               InputProps={{ inputProps: { min: `${curDate}` } }}
               onChange={(e) => setExpDate(e.target.value)}
-              defaultValue={curDate}
+              InputLabelProps={{
+                shrink: true,
+              }}
               required label="Exp Date" variant="standard" />
         </div>
 
-        <div className='flex'>
+        <div className='but'>
           <p onClick={() => navigator('/forget')}>Forget Password?</p>
           <Button
             variant="contained"

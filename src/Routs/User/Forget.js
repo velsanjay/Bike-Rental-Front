@@ -63,6 +63,7 @@ function ForgetEmail() {
                         onChange={(e) => setEmail(e.target.value)}
                         id="input-with-icon-adornment"
                         label="email"
+                        type='email'
                         className='email'
                         startAdornment={
                             <InputAdornment position="start">

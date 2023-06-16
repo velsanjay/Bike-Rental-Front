@@ -208,9 +208,24 @@ html{
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  margin-top: 50px;
+  margin-top: 90px;
   padding: 20px;
   background-color: #fff;
+}
+.book{
+  border-radius: 20px;
+  width: 600px;
+  gap: 1rem;
+  margin: auto;
+  display: grid;
+  grid-template-columns: auto;
+  margin-top: 90px;
+  padding: 20px;
+  margin-bottom: 10px;
+  background-color: #fff;
+}
+.book p{
+  text-align: start;
 }
 .confirm p{
   text-align: start;
@@ -250,6 +265,9 @@ html{
     width: 300px;
   }
   .confirm{
+    width: 280px;
+  }
+  .book{
     width: 280px;
   }
   .card{

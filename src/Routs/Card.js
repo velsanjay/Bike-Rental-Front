@@ -181,25 +181,24 @@ function Card() {
                 </div>
                 </RadioGroup>
                 <hr/>
-                {user && user.book !=null ?(
+                {data.available==false ?(
+                    <Button
+                    variant="contained"
+                    color="secondary"
+                    disabled
+                    >Bike Already Booked</Button>
+                ):user && user.book !=null ?(
                     <Button
                     variant="contained"
                     color="secondary"
                     disabled
                     >Plese Return Your Bike</Button>
-                ):data.available==true ?(
-                    <Button
-                    variant="contained"
-                    color="secondary"
-                    onClick={()=>navigate(`/${id}/book/${data._id}`)}
-                    >Book For This Bike</Button>
                 ):(
                     <Button
                 variant="contained"
                 color="secondary"
-                disabled
-                // onClick={()=>navigate(`/${id}/book/${data._id}`)}
-                >Bike Already Booked</Button>
+                onClick={()=>navigate(`/${id}/book/${data._id}`)}
+                >Book For This Bike</Button>
                 )}
                 
        </div>                                                  

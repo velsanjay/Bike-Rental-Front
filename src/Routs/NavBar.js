@@ -26,7 +26,9 @@ function NavBar() {
     <div >
       {data ?(
         <div className="nav">
-        <h1 className='cur'>Bike Rent</h1>
+        <h1 className='cur'
+        onClick={()=>navigate(`/dashboard/${id}`)}
+        >Bike Rent</h1>
         
         {data.role=="admin" ?(
           <Button 

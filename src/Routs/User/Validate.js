@@ -55,6 +55,7 @@ function ValidateEmail() {
               onChange={(e) => setEmail(e.target.value)}
               id="input-with-icon-adornment"
               label="email"
+              type='email'
               className='email'
               startAdornment={
                 <InputAdornment position="start">
@@ -69,14 +70,15 @@ function ValidateEmail() {
           label='Enter Your OTP'
           />
           <div className='but'>
-            <p onClick={()=>navigate('/')}>Already You Have Account ?</p>
+          <p onClick={()=>navigate('/resend')}>Resend OTP ?</p>
+            
           <Button
           variant='contained'
           type='submit'
           >Validate</Button>
           </div>
           <div className='but'>
-            <p onClick={()=>navigate('/signup')}>Create New Account ?</p>
+          <p onClick={()=>navigate('/')}>Already You Have Account ?</p>
             <p onClick={()=>navigate('/forget')}>Forget Password ?</p>
           </div>
 </form>

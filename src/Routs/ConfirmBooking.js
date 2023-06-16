@@ -5,6 +5,7 @@ import { url } from '../App'
 import axios from 'axios'
 import { RingLoader } from 'react-spinners'
 import { toast } from 'react-toastify'
+import Confite from "react-confetti";
 
 function ConfirmBooking() {
     const {id}= useParams()
@@ -13,6 +14,7 @@ function ConfirmBooking() {
     const [bike , setBike] = useState(null)
     const [loading , setLoading] = useState(false)
     const [show , setShow] = useState(true)
+    const [winner, setWinner] = useState(false)
     let navigate = useNavigate()
     let date;
     let date1;
@@ -21,18 +23,18 @@ function ConfirmBooking() {
 
     useEffect(()=>{
         const fetchData = async() =>{
-            try {
                 setLoading(true)
+            try {
                 let res = await axios.get(`${url}/get/${userid}`)
                 setData(res.data.data)
                 if(res){
                     let resData = await axios.get(`${url}/get/${res.data.data.bikeId}`)
                     setBike(resData.data.data)
                 }    
-                setLoading(false)
             } catch (error) {
                 console.log(error)
             }
+            setLoading(false)
         }
         fetchData()
     },[])
@@ -61,7 +63,10 @@ function ConfirmBooking() {
            
         }else if(ex2[0]==0){
             date = `12:${ex2[1]} am ${mon[Number(ex1[1])]} ${ex1[2]} ${ex1[0]}`
-        }else{
+        }else if(ex2[0]==12){
+            date = `${data.startTime} pm ${mon[Number(ex1[1])]} ${ex1[2]} ${ex1[0]}`
+        }
+        else{
             date = `${data.startTime} am ${mon[Number(ex1[1])]} ${ex1[2]} ${ex1[0]}`
         }
       
@@ -74,7 +79,10 @@ function ConfirmBooking() {
             }
         }else if(ex4[0]==0){
             date1 = `12:${ex4[1]} am ${mon[Number(ex3[1])]} ${ex3[2]} ${ex3[0]}`
-        }else{
+        }else if (ex4[0]==12){
+            date1 = `${data.endTime} pm ${mon[Number(ex3[1])]} ${ex3[2]} ${ex3[0]}` 
+        }
+        else{
             date1 = `${data.endTime} am ${mon[Number(ex3[1])]} ${ex3[2]} ${ex3[0]}`
         }
     }
@@ -97,7 +105,13 @@ function ConfirmBooking() {
             toast.success(res.data.message)
             let res1 = await axios.patch(`${url}/bike/edit`, payload1)
             console.log(res1.data)
-            navigate(`/dashboard/${id}`)
+            setLoading(false)
+            setWinner(true)
+             setTimeout(()=>{
+            setLoading(true)    
+             navigate(`/dashboard/${id}`)
+            },3000)
+           
         } catch (error) {
             toast.error(error.response.data.message)
         }
@@ -128,6 +142,7 @@ function ConfirmBooking() {
           </div>
           ):(
     <div>
+        {winner ? <Confite /> : ""}
         {data != null && bike !=null ?(
           <div className='confirm'>
             <img className='img' src={bike.img}/>
@@ -167,8 +182,8 @@ function ConfirmBooking() {
                 <hr/>
                 <div>
                 <div>
-                <p>Total</p>
-                <p>₹{total}.00</p>
+                <h4>Total</h4>
+                <h2  style={{"textAlign":"start"}}>₹{total}.00</h2>
             </div>
             {show ? (
                  <Button variant='contained' 

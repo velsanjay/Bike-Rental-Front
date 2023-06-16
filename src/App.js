@@ -13,6 +13,7 @@ import ConfirmBooking from './Routs/ConfirmBooking';
 import BookDetail from './Routs/BookDetail';
 import LogOut from './Routs/LogOut';
 import { ToastContainer } from 'react-toastify';
+import ResendEmail from './Routs/User/ResendEmail';
 
 export const url = 'https://bike-rental-lant.onrender.com'
 
@@ -31,6 +32,7 @@ function App() {
       <Route path=':id/booking/:userid' element={<ConfirmBooking/>} />
       <Route path='/:id/bike' element={<BookDetail/>}/>
       <Route path='/:id' element={<LogOut/>}/>
+      <Route path='/resend' element={<ResendEmail/>} />
     </Routes>
     <ToastContainer/>
     </div>

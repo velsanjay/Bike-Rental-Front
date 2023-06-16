@@ -18,13 +18,11 @@ function BikeBook() {
     const [endTime, setEndTime] = useState(null)
     const [plan, setPlan] = useState(null)
   let curDate;
-  let maxDate;
 
     let Full=new Date()
     let fullMonth = [0,31,28,31,30,31,30,31,31,30,31,30,31]
     let year=Full.getFullYear()
     let month=(Full.getMonth()+1).toString()
-    let month1=(Full.getMonth()+2).toString()
     let date=Full.getDate().toString()
     let date1 = (Full.getDate() + 28 - fullMonth[month]).toString()
     if (month.length===1){
@@ -37,7 +35,6 @@ function BikeBook() {
       date=`0${date}`
     }
     curDate=`${year}-${month}-${date}`
-    maxDate=`${year}-${month1}-${date1}`
 
     const handleSubmit = async (e) =>{
       e.preventDefault()
@@ -51,7 +48,7 @@ function BikeBook() {
     }
   return (
     <div>
-      <h1>Information</h1>
+      <h1 style={{"color":"#fff"}}>Information</h1>
        <form className='form' onSubmit={handleSubmit}>
         
         <TextField id="filled-basic" label="First Name" 
@@ -80,22 +77,34 @@ function BikeBook() {
         InputProps={{ inputProps: { min: `${curDate}` } }}
         onChange={(e)=>setStartDate(e.target.value)}
         required
+        InputLabelProps={{
+          shrink: true,
+        }}
         variant="filled" />
 
         <TextField id="filled-basic" type='time' label="Starting Time" 
         onChange={(e)=>setStartTime(e.target.value)}
         required
+        InputLabelProps={{
+          shrink: true,
+        }}
         variant="filled" />
 
         <TextField id="filled-basic" type='Date' label="End Data" 
         onChange={(e)=>setEndDate(e.target.value)}
         InputProps={{ inputProps: { min: `${startDate || curDate}`  } }}
         required
+        InputLabelProps={{
+          shrink: true,
+        }}
         variant="filled" />
 
         <TextField id="filled-basic" type='time' label="Ending Time" 
         onChange={(e)=>setEndTime(e.target.value)}
         required
+        InputLabelProps={{
+          shrink: true,
+        }}
         variant="filled" />
 
 <FormControl>

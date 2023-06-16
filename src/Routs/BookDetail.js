@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { Button } from '@mui/material'
 import { GridLoader } from 'react-spinners'
 import { toast } from 'react-toastify'
+import NavBar from './NavBar'
 
 function BookDetail() {
     let {id} = useParams()
@@ -57,16 +58,35 @@ function BookDetail() {
             total = bike.amount * days + data.plan
         }
         if(ex2[0]>12){
-            let start = ex2[0]-12 
-            date = `0${start}:${ex2[1]} pm ${mon[Number(ex1[1])]} ${ex1[2]} ${ex1[0]}`
-        }else{
+            let start = (ex2[0]-12).toString()
+            if(start.length==1){
+                date = `0${start}:${ex2[1]} pm ${mon[Number(ex1[1])]} ${ex1[2]} ${ex1[0]}`
+            }else{
+                date= `${start}:${ex2[1]} pm ${mon[Number(ex1[1])]} ${ex1[2]} ${ex1[0]}`
+            }
+           
+        }else if(ex2[0]==0){
+            date = `12:${ex2[1]} am ${mon[Number(ex1[1])]} ${ex1[2]} ${ex1[0]}`
+        }else if(ex2[0]==12){
+            date = `${data.startTime} pm ${mon[Number(ex1[1])]} ${ex1[2]} ${ex1[0]}`
+        }
+        else{
             date = `${data.startTime} am ${mon[Number(ex1[1])]} ${ex1[2]} ${ex1[0]}`
         }
       
         if(ex4[0]>12){
-            let start = ex4[0]-12 
-            date1 = `0${start}:${ex4[1]} pm ${mon[Number(ex3[1])]} ${ex3[2]} ${ex3[0]}`
-        }else{
+            let start = (ex4[0]-12).toString() 
+            if(start.length==1){
+                date1 = `0${start}:${ex4[1]} pm ${mon[Number(ex3[1])]} ${ex3[2]} ${ex3[0]}`
+            }else{
+                date1 = `${start}:${ex4[1]} pm ${mon[Number(ex3[1])]} ${ex3[2]} ${ex3[0]}`
+            }
+        }else if(ex4[0]==0){
+            date1 = `12:${ex4[1]} am ${mon[Number(ex3[1])]} ${ex3[2]} ${ex3[0]}`
+        }else if (ex4[0]==12){
+            date1 = `${data.endTime} pm ${mon[Number(ex3[1])]} ${ex3[2]} ${ex3[0]}` 
+        }
+        else{
             date1 = `${data.endTime} am ${mon[Number(ex3[1])]} ${ex3[2]} ${ex3[0]}`
         }
     }
@@ -102,8 +122,9 @@ function BookDetail() {
     
         ):(
             <div>
+                <NavBar/>
             {data != null && bike !=null ?(
-              <div className='confirm'>
+              <div className='book'>
                 <h1>My Bookings</h1>
                 <div className='bord'>
                     <h1>Driver Detail</h1>
@@ -148,12 +169,14 @@ function BookDetail() {
                
                 </div>
                 </div>
+                <div className='but'>
                 <Button
                 onClick={()=>navigate(`/dashboard/${id}`)}
                 >Go Back</Button>
               <Button variant='contained' 
               onClick={()=>ReturnBike()}
               color='error'>Return Bike</Button>
+              </div>
               </div>
             ):(
                 <div className='load'>
@@ -163,6 +186,7 @@ function BookDetail() {
                 onClick={()=>navigate(`/dashboard/${id}`)}
                 >No Booking Found</Button>
                 </div>
+                
             )}
             
         </div>
