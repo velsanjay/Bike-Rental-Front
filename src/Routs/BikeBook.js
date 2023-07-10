@@ -24,14 +24,10 @@ function BikeBook() {
     let year=Full.getFullYear()
     let month=(Full.getMonth()+1).toString()
     let date=Full.getDate().toString()
-    let date1 = (Full.getDate() + 28 - fullMonth[month]).toString()
     if (month.length===1){
       month=`0${month}`
     }
     if(date.length===1){
-      date=`0${date}`
-    }
-    if(date1.length===1){
       date=`0${date}`
     }
     curDate=`${year}-${month}-${date}`
